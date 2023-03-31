@@ -1,11 +1,8 @@
-# from django.shortcuts import render
-from django.http import JsonResponse
-
+from rest_framework.viewsets import ModelViewSet
 from .models.post import Post
+from .serializers import PostSerializer
 
-# Create your views here.
+class PostsViewSet(ModelViewSet):
+    queryset = Post.objects.all()
+    serializer_class = PostSerializer
 
-
-def index(request):
-    posts = list(Post.objects.all().values())
-    return JsonResponse(posts, safe=False)
